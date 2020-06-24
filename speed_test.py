@@ -1,6 +1,7 @@
 import pprint
 import subprocess
 import json
+import csv
 
 def get_speed_test_result():
     process = subprocess.run(['speedtest','--json'], capture_output=True)
@@ -8,6 +9,8 @@ def get_speed_test_result():
 
 def job():
     result = get_speed_test_result()
-    print(result['download'],result['upload'],result['client']['isp'], result['server']['host'])
+    with open('logs.csv', 'a') as f:
+        writer = csv.writer(f)
+        writer.writerow([result['download'],result['upload'],result['client']['isp'], result['server']['host']])
 
 job()
