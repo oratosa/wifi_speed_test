@@ -8,8 +8,6 @@ def get_speed_test_result():
 
 def job():
     result = get_speed_test_result()
-    pprint.pprint(result)
+    print(result['download'],result['upload'],result['client']['isp'], result['server']['host'])
 
 job()
-
-
